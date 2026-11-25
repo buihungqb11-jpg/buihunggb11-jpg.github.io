@@ -98,36 +98,97 @@ button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-se
   .hero{padding:18px 18px 16px}
   main{padding:16px}
 }
+
+/* 온미관 안국점 브랜드 리디자인 — 따뜻한 목재, 연한 민트 외벽, 유리 블록 */
+:root{
+ --bg:#f7f6f2;--bg-soft:#f7f6f2;--surface:#fffefa;--surface-2:#f8f6f1;
+ --ink:#282b26;--muted:#6f716b;--wood:#b67a34;--wood-deep:#88551f;
+ --mint:#dcead8;--mint-deep:#456b59;--line:#e8e6de;
+ --blue:#486653;
+}
+html,body{background:#f7f6f2;color:var(--ink)}
+header.site-header{position:relative;top:auto;padding:0;background:transparent;border:0;backdrop-filter:none}
+.masthead{
+ position:relative;min-height:194px;overflow:hidden;
+ background:#b77a37 url("https://japanese.visitseoul.net/comm/getImage?fileNo=1&fileTy=MEDIA&parentSn=74957&srvcId=MEDIA") center 47%/cover no-repeat;
+}
+.masthead:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,31,23,.16),rgba(13,31,23,.18) 35%,rgba(20,34,29,.82))}
+.mast-content{position:relative;color:white;min-height:194px;padding:18px 18px 17px;display:flex;flex-direction:column;justify-content:space-between}
+.mast-kicker{align-self:flex-end;font-size:10px;font-weight:800;letter-spacing:.16em;text-shadow:0 1px 7px #17251c99}
+.brand-lockup{display:flex;gap:13px;align-items:center;margin-top:16px}
+.mark{width:53px;height:53px;display:flex;align-items:center;justify-content:center;color:#302b23;background:#fffdf5;border:1px solid #e5decf;font-size:39px;line-height:1;border-radius:5px;box-shadow:0 4px 18px #0003}
+.brand-name{font-weight:900;letter-spacing:-.05em;font-size:32px;line-height:1.08;text-shadow:0 2px 7px #14251944}
+.brand-tagline{font-size:12px;margin-top:6px;color:#f7f6f0;letter-spacing:-.03em}
+.mast-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;font-weight:800;letter-spacing:.01em}
+.mast-bottom span:last-child{font-size:8px;letter-spacing:.12em;opacity:.75}
+.toolbar{position:sticky;top:0;z-index:9;background:rgba(249,248,244,.98);border-bottom:1px solid #e5e5dc;padding:15px 14px 12px;box-shadow:0 5px 16px #24301d0b}
+.toolbar-title{display:flex;align-items:center;justify-content:space-between;margin:0 1px 11px}
+.toolbar-title strong{display:block;font-size:19px;letter-spacing:-.05em;color:#293f33}
+.toolbar-title span{display:block;font-size:11px;color:#787f76;margin-top:3px}
+.toolbar-title .toolbar-date{display:inline-block;background:#edf3e9;color:#51705c;border:1px solid #dce8d9;border-radius:999px;padding:6px 11px;margin:0;font-size:11px;font-weight:800}
+.search-wrap{position:relative;margin:0}
+.search{padding:13px 14px 13px 41px;border-radius:12px;border:1px solid #d8dfd5;background:#fff;font-size:16px;box-shadow:none}
+.search:focus{outline:2px solid #b2d1bd;outline-offset:0}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:27px;line-height:1;color:#60806c;pointer-events:none}
+.tabs{gap:9px;margin-top:10px;padding:0 0 2px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{background:transparent;border:0;border-radius:8px;padding:9px 13px;font-size:12px;color:#798078;font-weight:800;min-height:39px}
+.tab.on{background:#3e6651;color:white;border:0;box-shadow:none}
+main.shell{padding:11px 13px}
+.notice{background:#edf3e9;border:1px solid #e1e9df;color:#546958;border-radius:12px;box-shadow:none;padding:10px 12px}
+.section{font-size:13px;color:#66715e;margin:20px 4px 9px;letter-spacing:-.03em}
+.section:before{background:#7b9b79;box-shadow:none;border-radius:2px;width:6px;height:17px}
+.item{border-radius:14px;box-shadow:0 2px 10px #28342408;border:1px solid #e7e9e2;padding:13px 14px;margin:7px 0;background:#fff}
+.item.chosen{border-color:#9bbc9e;background:#fdfefa;box-shadow:0 0 0 1px #c8dfcd}
+.alias{font-size:16px;color:#25392e;letter-spacing:-.03em}
+.fullname{margin:5px 0 10px;color:#7b857b}
+.actions{margin-top:8px}
+.copy{background:#f3f6f1;border:1px solid #dce5db;color:#56735e;border-radius:9px;padding:10px 12px}
+.step{border-radius:10px;border-color:#dae3d9;color:#41614d;background:#fff;min-width:46px;min-height:46px}
+.step.plus{background:#386b4b;border-color:#386b4b;color:white}
+.step.plus:active{background:#28543a}
+.num{color:#305840}
+.dock{background:rgba(255,255,251,.98);border-top:1px solid #dce5dd;box-shadow:0 -8px 24px #2e3a2911}
+.count{color:#2b4d39}
+.blue{background:#386b4b;box-shadow:none;border-radius:11px}
+.blue:active{background:#275237}
+.view{background:#f7f6f2}
+.viewbar{background:#edf3e9;border-bottom:1px solid #d9e6d9}
+.viewbar h2{color:#294b35}
+.badge{color:#41664b;background:#dae8dc}
+.orderItem{border-radius:13px;box-shadow:0 2px 10px #28342408;border-color:#e3e7dc}
+.orderIndex{background:#e2eee2;color:#416848;border-color:#cddfcf}
+.amount{color:#42694a}
+.mark{background:#e4efe4;color:#345b3b}
+@media(min-width:760px){.masthead,.mast-content{min-height:240px}.mast-content{padding:24px 18px}.brand-name{font-size:42px}.toolbar{padding-top:17px}}
+@media(max-width:390px){.masthead,.mast-content{min-height:175px}.toolbar{padding:12px 12px 9px}.toolbar-title strong{font-size:17px}.tab{padding:8px 10px}}
 </style>
 </head>
 <body>
-<header>
-  <div class="shell">
-    <div class="hero">
-      <div class="hero-top">
-        <div class="brand">
-          <div class="brand-badge">온미관</div>
-          <div>
-            <h1>온미관 발주 체크리스트</h1>
-            <p>매일 재고를 확인하고 필요한 품목만 골라서<br>발주퀵에 바로 검색할 수 있도록 만든 주문용 페이지</p>
-          </div>
-        </div>
-        <div class="hero-meta">
-          <div class="meta-pill">모바일 최적화</div>
-          <div class="meta-pill">검색어 바로 복사</div>
-        </div>
-      </div>
-      <div class="search-wrap">
-        <input type="search" id="search" class="search" placeholder="상품명 검색: 미나리, 식초, 고추, 만두…">
-      </div>
-      <nav class="tabs" id="tabs">
-        <button class="tab on" data-filter="main">자주 주문</button>
-        <button class="tab" data-filter="extra">추가 상품</button>
-        <button class="tab" data-filter="all">전체 상품</button>
-        <button class="tab" data-filter="selected">선택 상품</button>
-      </nav>
-    </div>
-  </div>
+<header class="site-header">
+ <div class="masthead">
+   <div class="mast-shade"></div>
+   <div class="mast-content shell">
+     <div class="mast-kicker">ONMIGWAN · ANGUK</div>
+     <div class="brand-lockup">
+       <div class="mark" aria-hidden="true">✳</div>
+       <div><div class="brand-name">온미관</div><div class="brand-tagline">따뜻함을 담은 공간, 간편한 발주</div></div>
+     </div>
+     <div class="mast-bottom"><span>매장 발주 체크리스트</span><span>STAFF ONLY · ORDER LIST</span></div>
+   </div>
+ </div>
+ <div class="toolbar">
+   <div class="shell">
+     <div class="toolbar-title"><div><strong>오늘의 발주</strong><span>필요한 재료만 빠르게 선택하세요</span></div><span class="toolbar-date">발주 관리</span></div>
+     <div class="search-wrap"><span class="search-icon" aria-hidden="true">⌕</span><input type="search" id="search" class="search" placeholder="상품명 검색 · 미나리, 만두, 식초…" autocomplete="off" enterkeyhint="search"></div>
+     <nav class="tabs" id="tabs" aria-label="상품 분류">
+       <button class="tab on" data-filter="main">자주 주문</button>
+       <button class="tab" data-filter="extra">추가 상품</button>
+       <button class="tab" data-filter="all">전체 상품</button>
+       <button class="tab" data-filter="selected">선택 상품</button>
+     </nav>
+   </div>
+ </div>
 </header>
 <main id="catalog" class="shell">
   <p class="notice">상품 목록을 불러오는 중입니다.</p>
