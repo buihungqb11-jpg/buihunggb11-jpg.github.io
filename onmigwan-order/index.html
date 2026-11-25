@@ -29,7 +29,7 @@ button,input{font:inherit}
 button{cursor:pointer}
 button:active{transform:scale(.985)}
 .shell{max-width:720px;margin:0 auto}
-header{padding:18px 14px 8px;position:sticky;top:0;z-index:8;background:linear-gradient(180deg,rgba(246,242,235,.98),rgba(246,242,235,.96));backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid rgba(168,107,36,.10)}
+header{padding:18px 14px 8px;position:sticky;top:0;z-index:8;background:linear-gradient(180deg,rgba(246,242,235,.98),rgba(246,242,235,.96));border-bottom:1px solid rgba(168,107,36,.10)}
 .hero{background:linear-gradient(135deg,var(--mint) 0 38%, #f1d8af 38% 100%); border:1px solid #d9ccb7; border-radius:28px; padding:16px; box-shadow:0 10px 30px rgba(111,79,35,.08); position:relative; overflow:hidden}
 .hero:after{content:'';position:absolute;right:-36px;top:-32px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.28)}
 .hero-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
@@ -60,6 +60,12 @@ main{padding:14px}
 .step{width:40px;height:40px;font-size:25px;line-height:1;border-radius:12px;background:#fff;border:1px solid #dbcdb8;color:#634b32}
 .step.plus{background:var(--wood);border-color:var(--wood);color:#fff}
 .step:disabled{opacity:.32}
+button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+.step{min-width:48px;min-height:48px;touch-action:manipulation}
+.step.plus:active{background:#9c611c;transform:scale(.95)}
+.copy,.mark,.tab,.blue{min-height:44px}
+@media(hover:none){button:focus{outline:none}}
+.item{content-visibility:auto;contain-intrinsic-size:auto 130px}
 .dock{position:fixed;left:0;right:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(255,251,245,.96);border-top:1px solid #e6d8c2;backdrop-filter:saturate(180%) blur(10px);z-index:9}
 .dock-in{max-width:720px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .count{font-size:15px;font-weight:900;color:#2f261d}
@@ -165,9 +171,25 @@ const qty=id=>Number(state.qty[id]||0);
 const picked=()=>PRODUCTS.filter(p=>qty(p.id)>0);
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
 function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function change(id,delta){state.qty[id]=Math.max(0,qty(id)+delta);if(!qty(id))delete state.done[id];persist();render();}
+function change(id,delta){
+  const current=qty(id),next=Math.max(0,current+delta);
+  if(current===next)return;
+  state.qty[id]=next;
+  if(!next)delete state.done[id];
+  persist();
+  const card=el('catalog').querySelector('[data-product-id="'+id+'"]');
+  if(card){
+    card.classList.toggle('chosen',next>0);
+    const count=card.querySelector('.num'),minus=card.querySelector('[data-minus]');
+    if(count)count.textContent=next;
+    if(minus)minus.disabled=next===0;
+  }
+  el('count').textContent='선택 상품 '+picked().length+'개';
+  if(filter==='selected'&&next===0)render();
+  if(el('view').classList.contains('open'))renderOrder();
+}
 async function copyText(t,b){let ok=false;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t);ok=true}}catch(e){}if(!ok){const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;top:10px;opacity:0';document.body.appendChild(ta);ta.focus();ta.select();try{ok=document.execCommand('copy')}catch(e){}ta.remove()}if(ok){if(b){const old=b.textContent;b.textContent='✓ 복사 완료';setTimeout(()=>b.textContent=old,1000)}}else alert('복사할 수 없습니다. 상품명을 길게 눌러 복사해 주세요.');}
-function card(p){const n=qty(p.id);return `<article class="item ${n?'chosen':''}"><div class="alias">${safe(p.clean)}</div>${p.clean!==p.lookup?'<div class="fullname">검색어: '+safe(p.lookup)+'</div>':''}<div class="actions"><button class="copy" data-copy="${p.id}">검색어 복사</button><div class="qtyctl"><button class="step" data-minus="${p.id}" ${n?'':'disabled'}>−</button><span class="num">${n}</span><button class="step plus" data-plus="${p.id}">+</button></div></div></article>`}
+function card(p){const n=qty(p.id);return `<article data-product-id="${p.id}" class="item ${n?'chosen':''}"><div class="alias">${safe(p.clean)}</div>${p.clean!==p.lookup?'<div class="fullname">검색어: '+safe(p.lookup)+'</div>':''}<div class="actions"><button class="copy" data-copy="${p.id}">검색어 복사</button><div class="qtyctl"><button class="step" data-minus="${p.id}" ${n?'':'disabled'}>−</button><span class="num">${n}</span><button class="step plus" data-plus="${p.id}">+</button></div></div></article>`}
 function render(){
   const list=PRODUCTS.filter(p=>((filter==='all')||(filter==='selected'&&qty(p.id)>0)||(p.group===filter))&&(p.clean+' '+p.lookup+' '+p.alias+' '+p.name).toLowerCase().includes(search));
   let out=`<div class="notice">${list.length}개 상품 표시 · 필요한 수량을 선택하고 검색어를 복사하세요.</div>`;
