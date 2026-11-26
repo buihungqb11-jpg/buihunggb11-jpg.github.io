@@ -89,6 +89,8 @@ button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-se
 .orderActions{display:flex;gap:8px;margin-top:11px;flex-wrap:wrap}
 .mark{border:0;border-radius:12px;background:#e3f0df;color:#2d6b37;padding:10px 12px;font-size:12px;font-weight:800}
 .mark.done{background:#e8e3db;color:#6a6258}
+.orderActions .mark{display:inline-flex;align-items:center;justify-content:center;width:auto;height:auto;min-height:44px;font-size:12px;line-height:1.3;white-space:nowrap;flex:0 0 auto;box-shadow:none}
+.orderActions .mark.done{background:#e8e3db;color:#6a6258}
 .muted{font-size:12px;color:#756556;line-height:1.7}
 .bottomActions{display:grid;gap:8px;margin-top:15px}
 .warning{font-size:12px;color:#74532b;background:#fff4e5;padding:12px;border-radius:14px;line-height:1.7;border:1px solid #f0d2a6}
@@ -116,7 +118,7 @@ header.site-header{position:relative;top:auto;padding:0;background:transparent;b
 .mast-content{position:relative;color:white;min-height:194px;padding:18px 18px 17px;display:flex;flex-direction:column;justify-content:space-between}
 .mast-kicker{align-self:flex-end;font-size:10px;font-weight:800;letter-spacing:.16em;text-shadow:0 1px 7px #17251c99}
 .brand-lockup{display:flex;gap:13px;align-items:center;margin-top:16px}
-.mark{width:53px;height:53px;display:flex;align-items:center;justify-content:center;color:#302b23;background:#fffdf5;border:1px solid #e5decf;font-size:39px;line-height:1;border-radius:5px;box-shadow:0 4px 18px #0003}
+.brand-symbol{width:53px;height:53px;display:flex;align-items:center;justify-content:center;color:#302b23;background:#fffdf5;border:1px solid #e5decf;font-size:39px;line-height:1;border-radius:5px;box-shadow:0 4px 18px #0003}
 .brand-name{font-weight:900;letter-spacing:-.05em;font-size:32px;line-height:1.08;text-shadow:0 2px 7px #14251944}
 .brand-tagline{font-size:12px;margin-top:6px;color:#f7f6f0;letter-spacing:-.03em}
 .mast-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;font-weight:800;letter-spacing:.01em}
@@ -171,7 +173,7 @@ main.shell{padding:11px 13px}
    <div class="mast-content shell">
      <div class="mast-kicker">ONMIGWAN · ANGUK</div>
      <div class="brand-lockup">
-       <div class="mark" aria-hidden="true">✳</div>
+       <div class="brand-symbol" aria-hidden="true">✳</div>
        <div><div class="brand-name">온미관</div><div class="brand-tagline">따뜻함을 담은 공간, 간편한 발주</div></div>
      </div>
      <div class="mast-bottom"><span>매장 발주 체크리스트</span><span>STAFF ONLY · ORDER LIST</span></div>
